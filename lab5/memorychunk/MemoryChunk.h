@@ -22,7 +22,7 @@ namespace memorychunk {
 
         ~MemoryChunk();
 
-        MemoryChunk(size_t sz);
+        MemoryChunk(size_t size);
 
         int8_t *MemoryAt(size_t offset) const;
 

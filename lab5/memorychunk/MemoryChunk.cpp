@@ -44,9 +44,9 @@ namespace memorychunk {
         pointer = nullptr;
     }
 
-    MemoryChunk::MemoryChunk(size_t sz) {
-        pointerLength = sz;
-        pointer = new int8_t[sz];
+    MemoryChunk::MemoryChunk(size_t size) {
+        pointerLength = size;
+        pointer = new int8_t[size];
     }
 
     int8_t *MemoryChunk::MemoryAt(size_t offset) const {

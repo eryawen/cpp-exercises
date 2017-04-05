@@ -37,7 +37,7 @@ namespace pool {
             return *this;
         }
         std::swap(words, textPool.words);
-        textPool.words.clear(); //todo
+        textPool.words.clear();
         return *this;
     }
 

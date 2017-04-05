@@ -15,11 +15,11 @@ namespace pool {
     public:
         TextPool();
 
+        TextPool(TextPool &&textPool);
+
         TextPool(const TextPool &textPool) = delete;
 
         TextPool(const std::initializer_list<std::string> &words);
-
-        TextPool(TextPool &&textPool);
 
         TextPool &operator=(TextPool &&textPool);
 
