@@ -29,3 +29,4 @@ public:
 private:
     char *name_;
 };
+

@@ -40,3 +40,4 @@ XXX &XXX::operator=(const XXX &xxx) {
     name_ = new char[sz];
     strcpy(name_, xxx.name_);
 }
+

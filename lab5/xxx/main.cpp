@@ -21,3 +21,4 @@ int main() {
     XXX one_more = make_copy(another_xxx);
 
 }
+
