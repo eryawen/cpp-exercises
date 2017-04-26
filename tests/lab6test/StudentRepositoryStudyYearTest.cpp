@@ -25,6 +25,7 @@ TEST_F(StudentRepositoryStudyYearTests, IsAbleToCreateDefaultStudyYear) {
 
   EXPECT_EQ(1, year);
 
+
 }
 
 TEST_F(StudentRepositoryStudyYearTests, IsAbleToCompateTwoYears) {
