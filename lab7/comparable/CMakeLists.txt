@@ -1,8 +1,8 @@
 
 project(comparable)
 
-set(HEDEAR_FILES Comparable.h)
-set(SOURCE_FILES Comparable.cpp)
+set(HEDEAR_FILES ../../lab6/academia/StudentRepository.h Comparable.h)
+set(SOURCE_FILES  ../../lab6/academia/StudentRepository.cpp Comparable.cpp)
 
 add_library(libcomparable STATIC ${SOURCE_FILES})
 target_include_directories(libcomparable PUBLIC .)
