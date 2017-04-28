@@ -10,11 +10,11 @@
 #include <MemLeakTest.h>
 #include <Pesel.h>
 
-using ::academia::Pesel;
+using  academia::Pesel;
 using ::academia::InvalidPeselChecksum;
 using ::academia::InvalidPeselLength;
 using ::academia::InvalidPeselCharacter;
-using ::academia::AcademiaDataValidationError;
+using ::academia::AcademiaDataValidatorError;
 
 using ::std::make_unique;
 using ::std::string;
@@ -53,7 +53,7 @@ TEST_F(PeselTests, ThereAreNoMemoryLeaksAfterThrowingAnExcpetion) {
 }
 
 TEST_F(PeselTests, BaseClassOfInvalidPeselChecksumIsDataValidationErrorThen__runtime_error__Then__exception) {
-  EXPECT_THROW(Pesel("00000000001"),AcademiaDataValidationError);
+  EXPECT_THROW(Pesel("00000000001"),AcademiaDataValidatorError);
   EXPECT_THROW(Pesel("00000000001"),std::runtime_error);
   EXPECT_THROW(Pesel("00000000001"),std::exception);
 }
