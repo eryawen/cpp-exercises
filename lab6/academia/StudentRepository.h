@@ -7,9 +7,15 @@
 
 #include <string>
 #include <set>
+#include <memory>
 #include <ostream>
+#include "../../lab7/academiaqueries/StudentRepositoryQueries.h"
+
+using ::std::make_unique;
 
 namespace academia {
+    class Query;
+
     class StudyYear {
     public:
         StudyYear(int i = 1);
@@ -24,6 +30,8 @@ namespace academia {
         StudyYear operator++(int);
 
         StudyYear operator--(int);
+
+        ~StudyYear() {}
 
         bool operator<(const StudyYear &studyYear) const;
 
@@ -58,6 +66,8 @@ namespace academia {
 
         Student() {};
 
+        ~Student() {};
+
         const std::string &First_name() const {
             return first_name;
         }
@@ -89,8 +99,12 @@ namespace academia {
 
         int StudentCount();
 
+        std::vector<Student> FindByQuery(std::unique_ptr<Query> query);
+
+        ~StudentRepository() {}
+
     private:
-        std::set<Student> students_;
+        std::vector<Student> students_;
     };
 
     std::ostream &operator<<(std::ostream &os, const StudentRepository &studentRepository);

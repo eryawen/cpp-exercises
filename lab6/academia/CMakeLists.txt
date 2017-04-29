@@ -9,4 +9,5 @@ target_include_directories(libstudentrepository PUBLIC .)
 
 add_executable(studentrepository ${SOURCE_FILES})
 
-target_link_libraries(studentrepository libstudentrepository)
+target_link_libraries(studentrepository libstudentrepository )
+target_link_libraries(studentrepository libstudentrepositoryqueries)

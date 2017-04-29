@@ -3,9 +3,11 @@
 //
 
 #include <cstring>
+#include <bits/unique_ptr.h>
 #include "StudentRepository.h"
 //#include "json.hpp"
 //using json = nlohmann::json;
+using ::std::make_unique;
 namespace academia {
     StudyYear &StudyYear::operator++() {
         year_++;
@@ -55,11 +57,15 @@ namespace academia {
                && std::equal(students_.begin(), students_.end(), other.students_.begin());
     }
 
-    Student &StudentRepository::operator[](std::string id) {
-        //todo
+    Student &StudentRepository::operator[](std::string id) { //?
+        for (auto &student : students_) {
+            if (student.Id().compare(id) == 0) {
+                return student;
+            }
+        }
     }
 
-    const Student &StudentRepository::operator[](std::string id) const { //todo
+    const Student &StudentRepository::operator[](std::string id) const { //?
         for (auto &student : students_) {
             if (student.Id().compare(id)) {
                 return student;
@@ -73,8 +79,20 @@ namespace academia {
 
     StudentRepository::StudentRepository(std::initializer_list<Student> list) {
         for (auto &s : list) {
-            students_.insert(s);
+            students_.push_back(s);
         }
+    }
+
+
+    std::vector<Student> StudentRepository::FindByQuery(std::unique_ptr<Query> query) {
+        std::unique_ptr<Query> query_ = std::move(query);
+        std::vector<Student> filtered{};
+        for (auto student : students_) {
+            if (query_->Accept(student)) {
+                filtered.push_back(student);
+            }
+        }
+        return filtered;
     }
 
     bool Student::operator==(const Student &other) const {
