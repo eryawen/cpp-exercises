@@ -5,9 +5,9 @@
 #include <gtest/gtest.h>
 #include <vector>
 #include <MemLeakTest.h>
-#include <StudyYear.h>
-#include <Student.h>
 #include <StudentRepositoryQueries.h>
+#include "../../lab6/academia/StudentRepository.h"
+
 
 using ::academia::ByFirstName;
 using ::academia::Student;
