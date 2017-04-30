@@ -5,7 +5,7 @@
 #include <gtest/gtest.h>
 #include <vector>
 #include <MemLeakTest.h>
-#include <ArrayFill.h>
+#include <FillArray.h>
 
 using ::arrays::UniformFill;
 using ::arrays::FillArray;

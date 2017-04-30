@@ -7,7 +7,7 @@
 #include <memory>
 #include <random>
 #include <MemLeakTest.h>
-#include <ArrayFill.h>
+#include <FillArray.h>
 
 using ::arrays::RandomFill;
 using ::arrays::FillArray;
@@ -18,7 +18,10 @@ using ::std::make_unique;
 class ArrayFillRandomTests : public ::testing::Test, MemLeakTest {
 };
 
-TEST_F(ArrayFillRandomTests, FillsArrayWithRandomValues) {
+TEST_F(ArrayFillRandomTests, FillsArrayWithRandomValues)
+
+
+{
   std::vector<int> vs;
 
   auto generator = make_unique<default_random_engine>();
