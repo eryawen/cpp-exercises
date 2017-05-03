@@ -24,9 +24,12 @@ namespace academia {
 
     class AcademiaDataValidatorError : public std::runtime_error {
     public:
+        AcademiaDataValidatorError() : std::runtime_error("") {}
+
         AcademiaDataValidatorError(const std::string &message) : std::runtime_error(message) {}
 
         std::string baseMessage(const std::string &pesel);
+
     };
 
     class InvalidPeselChecksum : public AcademiaDataValidatorError {
@@ -55,3 +58,4 @@ namespace academia {
 
 #endif //JIMP_EXERCISES_PESEL_H
 
+//todo message
