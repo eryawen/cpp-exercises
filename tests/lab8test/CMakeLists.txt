@@ -12,6 +12,7 @@ add_gtest_with_memleak(micro_dvd_correct_cases libmoviesubtitles)
 add_gtest_with_memleak(micro_dvd_error_cases libmoviesubtitles)
 add_gtest_with_memleak(sub_rip_correct_cases libmoviesubtitles)
 add_gtest_with_memleak(sub_rip_error_cases libmoviesubtitles)
+add_gtest_with_memleak(student_validator libstudentvalidator)
 
 
 #######################################################################
@@ -24,3 +25,4 @@ target_link_libraries(lab8_all_tests libpesel)
 target_link_libraries(lab8_all_tests libmoviesubtitles)
 target_link_libraries(lab8_all_tests memleak)
 target_link_libraries(lab8_all_tests stringutility)
+target_link_libraries(lab8_all_tests libstudentvalidator)
