@@ -48,12 +48,12 @@ TEST_F(StudentValidatorTest, FourNamesAndSurname_ThrowsInvalidNameSurnameExcepti
     EXPECT_THROW(studentValidator.checkNames("Someone With Too Many Names"), InvalidNameSurname);
 }
 
-TEST_F(StudentValidatorTest, SurnameBeginsWithLowercaseLetter_ThrowsInvalidNameSurnameException) {
-    EXPECT_THROW(studentValidator.checkNames("Jack sparrow"), InvalidNameSurname);
+TEST_F(StudentValidatorTest, SurnameBeginsWithLowercaseLetter_ThrowsInvalidNameCharactersException) {
+    EXPECT_THROW(studentValidator.checkNames("Jack sparrow"), InvalidNameCharacters);
 }
 
-TEST_F(StudentValidatorTest, MiddleNameHasUppercaseLetterWithin_ThrowsInvalidNameSurnameException) {
-    EXPECT_THROW(studentValidator.checkNames("Hermione JaNe Granger"), InvalidNameSurname);
+TEST_F(StudentValidatorTest, MiddleNameHasUppercaseLetterWithin_ThrowsInvalidNameCharactersException) {
+    EXPECT_THROW(studentValidator.checkNames("Hermione JaNe Granger"), InvalidNameCharacters);
 }
 
 TEST_F(StudentValidatorTest, FirstNameContainsInvalidSpecialCharacter_ThrowsInvalidNameCharactersException) {
@@ -66,10 +66,13 @@ TEST_F(StudentValidatorTest, MiddleNameContainsDigit_ThrowsInvalidNameCharacters
 
 TEST_F(StudentValidatorTest, CorrectAge_DoesNotThrowException) {
     EXPECT_NO_THROW(studentValidator.checkAge(21));
+    EXPECT_NO_THROW(studentValidator.checkAge(10));
+    EXPECT_NO_THROW(studentValidator.checkAge(100));
 }
 
 TEST_F(StudentValidatorTest, StudentIsTooYoung_ThrowsInvalidAgeException) {
     EXPECT_THROW(studentValidator.checkAge(7), InvalidAge);
+    EXPECT_THROW(studentValidator.checkAge(9), InvalidAge);
 
 }
 
@@ -82,7 +85,7 @@ TEST_F(StudentValidatorTest, AvailableProgram_DoesNotThrowException) {
 }
 
 TEST_F(StudentValidatorTest, UnavailableProgram_ThrowsInvalidProgramException) {
-    EXPECT_THROW(studentValidator.checkProgram("historia"), InvalidAge);
+    EXPECT_THROW(studentValidator.checkProgram("historia"), InvalidProgram);
 }
 
 //todo memory leak
