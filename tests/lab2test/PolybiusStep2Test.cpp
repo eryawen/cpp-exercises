@@ -16,7 +16,7 @@ TEST_P(PolybiusStep2Tests, PolybiusDecryptShouldReturnExpectedResult) {
   const TestParam &p = GetParam();
   std::string encrypted = p.first;
   std::string message = p.second;
-  EXPECT_EQ(encrypted, PolybiusDecrypt(message)) << "Did call PolybiusDecrypt(" << message << ")\n";
+  EXPECT_EQ(encrypted, DecryptMessage(message)) << "Did call PolybiusDecrypt(" << message << ")\n";
 }
 
 std::vector<TestParam> polybius_decrypt_test_data{
