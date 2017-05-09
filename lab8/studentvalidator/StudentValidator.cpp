@@ -2,6 +2,7 @@
 // Created by mk on 03.05.2017.
 //
 
+#include <string>
 #include <regex>
 #include <iostream>
 #include "StudentValidator.h"
@@ -9,6 +10,7 @@
 using std::cout;
 
 namespace academia {
+
     void StudentValidator::checkProgram(const std::string &program) {
         for (std::string &program_ : programs) {
             if (program_.compare(program) == 0) {
@@ -25,23 +27,23 @@ namespace academia {
     }
 
     void StudentValidator::checkNames(const std::string &names) {
-        bool hasMiddleName;
-        std::regex withoutMiddleName{"^(\\S+)\\s(\\S+)$"};
-        std::regex withMiddleName{"^(\\S+)\\s(\\S+)\\s(\\S+)$"};
-        std::smatch matchesWithoutMiddleName;
-        std::smatch matchesWithMiddleName;
+        bool has_middle_name;
+        std::regex without_middle_name{"^(\\S+)\\s(\\S+)$"};
+        std::regex with_middle_name{"^(\\S+)\\s(\\S+)\\s(\\S+)$"};
+        std::smatch matches_without_middle_name;
+        std::smatch matches_with_middle_name;
 
-        hasMiddleName = std::regex_match(names, matchesWithMiddleName, withMiddleName);
-        if (!std::regex_match(names, matchesWithoutMiddleName, withoutMiddleName) && !hasMiddleName) {
+        has_middle_name = std::regex_match(names, matches_with_middle_name, with_middle_name);
+        if (!std::regex_match(names, matches_without_middle_name, without_middle_name) && !has_middle_name) {
             throw InvalidNameSurname();
         }
-        if (hasMiddleName) {
-            validateName(matchesWithMiddleName[1]);
-            validateName(matchesWithMiddleName[2]);
-            validateSurname(matchesWithMiddleName[3]);
+        if (has_middle_name) {
+            validateName(matches_with_middle_name[1]);
+            validateName(matches_with_middle_name[2]);
+            validateSurname(matches_with_middle_name[3]);
         } else {
-            validateName(matchesWithoutMiddleName[1]);
-            validateSurname(matchesWithoutMiddleName[2]);
+            validateName(matches_without_middle_name[1]);
+            validateSurname(matches_without_middle_name[2]);
         }
     }
 
@@ -64,7 +66,6 @@ namespace academia {
         }
     }
 
-
     void StudentValidator::validateSurname(const std::string &surname) {
         validate_IsUpper(surname[0]);
         int i = 1;
@@ -83,4 +84,3 @@ namespace academia {
 }
 
 //NOT TO USE "NEW"
-//todo refactoring, messages

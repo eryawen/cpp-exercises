@@ -13,13 +13,12 @@ using ::academia::StudentValidator;
 using ::academia::InvalidProgram;
 using ::academia::InvalidAge;
 using ::academia::InvalidNameCharacters;
-using ::academia::InvalidPeselLength;
 using ::academia::InvalidNameSurname;
 
 
 class StudentValidatorTest : public ::testing::Test, MemLeakTest {
 protected:
-    static StudentValidator studentValidator; //todo clean-up (?)
+    static StudentValidator studentValidator;
 
     static void SetUpTestCase() {
         studentValidator = StudentValidator();
@@ -73,7 +72,6 @@ TEST_F(StudentValidatorTest, CorrectAge_DoesNotThrowException) {
 TEST_F(StudentValidatorTest, StudentIsTooYoung_ThrowsInvalidAgeException) {
     EXPECT_THROW(studentValidator.checkAge(7), InvalidAge);
     EXPECT_THROW(studentValidator.checkAge(9), InvalidAge);
-
 }
 
 TEST_F(StudentValidatorTest, StudentIsTooOld_ThrowsInvalidAgeException) {
@@ -87,5 +85,3 @@ TEST_F(StudentValidatorTest, AvailableProgram_DoesNotThrowException) {
 TEST_F(StudentValidatorTest, UnavailableProgram_ThrowsInvalidProgramException) {
     EXPECT_THROW(studentValidator.checkProgram("historia"), InvalidProgram);
 }
-
-//todo memory leak

@@ -37,7 +37,7 @@ namespace academia {
         return (pesel.at(i) - '0');
     }
 
-    std::string AcademiaDataValidatorError::baseMessage(const std::string &pesel) {
+    std::string basePeselMessage(const std::string &pesel) {
         return "Invalid PESEL(" + pesel + ") ";
     }
 

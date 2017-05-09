@@ -5,10 +5,14 @@
 #ifndef JIMP_EXERCISES_PESEL_H
 #define JIMP_EXERCISES_PESEL_H
 
+#include "../../lab8/studentvalidator/StudentValidator.h"
 #include <string>
 #include <stdexcept>
 
+using ::academia::AcademiaDataValidatorError;
+
 namespace academia {
+    std::string basePeselMessage(const std::string &pesel);
 
     class Pesel {
     public:
@@ -22,34 +26,24 @@ namespace academia {
         int digitAt(const std::string &pesel, int i);
     };
 
-    class AcademiaDataValidatorError : public std::runtime_error {
-    public:
-        AcademiaDataValidatorError() : std::runtime_error("") {}
-
-        AcademiaDataValidatorError(const std::string &message) : std::runtime_error(message) {}
-
-        std::string baseMessage(const std::string &pesel);
-
-    };
-
     class InvalidPeselChecksum : public AcademiaDataValidatorError {
     public:
         InvalidPeselChecksum(const std::string &pesel, int controlSum) : AcademiaDataValidatorError(
-                baseMessage(pesel) + "checksum: " + std::to_string(controlSum)) {}
+                basePeselMessage(pesel) + "checksum: " + std::to_string(controlSum)) {}
 
     };
 
     class InvalidPeselLength : public AcademiaDataValidatorError {
     public:
         InvalidPeselLength(const std::string &pesel, int length)
-                : AcademiaDataValidatorError(baseMessage(pesel) + "length: " + std::to_string(length)) {}
+                : AcademiaDataValidatorError(basePeselMessage(pesel) + "length: " + std::to_string(length)) {}
 
     };
 
     class InvalidPeselCharacter : public AcademiaDataValidatorError {
     public:
         InvalidPeselCharacter(const std::string &pesel) : AcademiaDataValidatorError(
-                baseMessage(pesel) + "character set") {}
+                basePeselMessage(pesel) + "character set") {}
 
     };
 
@@ -58,4 +52,3 @@ namespace academia {
 
 #endif //JIMP_EXERCISES_PESEL_H
 
-//todo message

@@ -5,11 +5,12 @@
 #ifndef JIMP_EXERCISES_STUDENTVALIDATOR_H
 #define JIMP_EXERCISES_STUDENTVALIDATOR_H
 
+
+
 #include <string>
 #include <vector>
-#include "../../lab8/pesel/Pesel.h"
+#include <stdexcept>
 
-using academia::AcademiaDataValidatorError;
 namespace academia {
     class StudentValidator {
     public:
@@ -34,27 +35,49 @@ namespace academia {
         void validate_IsLower(char c);
     };
 
+    class AcademiaDataValidatorError : public std::runtime_error {
+    public:
+        AcademiaDataValidatorError() : runtime_error("") {}
+
+        AcademiaDataValidatorError(const std::string &message) : runtime_error(message) {}
+
+    };
+
     class InvalidNameSurname : public AcademiaDataValidatorError {
     public:
         InvalidNameSurname() : AcademiaDataValidatorError() {}
+
+        InvalidNameSurname(const std::string &name) : AcademiaDataValidatorError("Invalid name: " + name) {}
+
+        ~InvalidNameSurname() {};
     };
 
     class InvalidNameCharacters : public AcademiaDataValidatorError {
     public:
         InvalidNameCharacters() : AcademiaDataValidatorError() {}
+
+        InvalidNameCharacters(const std::string &name) : AcademiaDataValidatorError("Name \"" + name + "\" contains invalid characters") {}
+
+        ~InvalidNameCharacters() {};
     };
 
     class InvalidAge : public AcademiaDataValidatorError {
     public:
         InvalidAge() : AcademiaDataValidatorError() {}
 
+        InvalidAge(int age) : AcademiaDataValidatorError("Invalid age: " + std::to_string(age) + ". Acceptable range is <10,100>") {}
+
+        ~InvalidAge() {};
     };
 
     class InvalidProgram : public AcademiaDataValidatorError {
     public:
         InvalidProgram() : AcademiaDataValidatorError() {}
+
+        InvalidProgram(const std::string &program) : AcademiaDataValidatorError("UnavailableProgram: " + program) {}
+
+        ~InvalidProgram() {}
     };
 }
 #endif //JIMP_EXERCISES_STUDENTVALIDATOR_H
 
-//todo destructor, message, separate file for exceptions
