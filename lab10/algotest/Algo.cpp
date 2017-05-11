@@ -87,11 +87,11 @@ namespace algo {
     }
 
     bool ContainsKey(const std::map<std::string, int> &v, const std::string &key) {
-        //todo
+        return std::any_of(std::begin(v), std::end(v), [key](auto &p) { return p.first == key;});
     }
 
     bool ContainsValue(const std::map<std::string, int> &v, int value) {
-        //todo
+        return std::any_of(std::begin(v), std::end(v), [value](auto &p) { return p.second == value;});
     }
 
     std::vector<std::string> RemoveDuplicates(const std::vector<std::string> &v) {
